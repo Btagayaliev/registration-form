@@ -28,14 +28,14 @@ public class CustomerController {
 		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
 	}
 	
-	/*
-	 * @GetMapping("/{id}/customer") public ResponseEntity<String>
-	 * getCustomerByID(@PathVariable Long id) { String customer =
-	 * customerService.retrieveCustomerById(id); return new
-	 * ResponseEntity<String>(customer, HttpStatus.OK); }
-	 * 
-	 * public ResponseEntity<List<String>> getCustomerNames() { List<String> names =
-	 * customerService.retrieveCustomerNames(); return new
-	 * ResponseEntity<List<String>>(names, HttpStatus.OK); }
-	 */
+	
+	  @GetMapping("/{id}/customer") public ResponseEntity<String>
+	  getCustomerByID(@PathVariable Long id) { String customer =
+	  customerService.retrieveCustomerById(id); return new
+	  ResponseEntity<String>(customer, HttpStatus.OK); }
+	  
+	  public ResponseEntity<List<String>> getCustomerNames() { List<String> names =
+	  customerService.retrieveCustomerNames(); return new
+	  ResponseEntity<List<String>>(names, HttpStatus.OK); }
+	 
 }

@@ -1,3 +1,1 @@
-INSERT INTO customer (id, firstName, lastName, dateOfBirth, email, password, passwordConfirm) VALUES (1, 'Peter', 'Pan', '12-12-1990', 'peter.pan@gmail.com', 'petrushka', 'petrushka');
-INSERT INTO customer (id, firstName, lastName, dateOfBirth, email, password, passwordConfirm) VALUES (2, 'Petra', 'Pangina', '12-12-1994', 'p.pangina@gmail.com', 'pangina', 'pangina');
-
+INSERT INTO customer (id, DATE_OF_BIRTH, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, PASSWORD_CONFIRM) VALUES (1, '12-12-1990', 'peter.pan@example.com', 'Peter', 'Pan', 'petrushka', 'petrushka');

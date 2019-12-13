@@ -21,16 +21,16 @@ public class CustomerServiceImpl implements CustomerService {
 		return (List<Customer>) customerRepository.findAll();
 	}
 
-	/*
-	 * @Override public String retrieveCustomerById(Long id) { Optional<String>
-	 * optionalBreed = Optional.ofNullable(customerRepository.findCustomerById(id));
-	 * String customer = optionalBreed.orElseThrow(CustomerNotFoundException::new);
-	 * return customer; }
-	 * 
-	 * @Override public List<String> retrieveCustomerNames() {
-	 * 
-	 * return (List<String>) customerRepository.findAllNames(); }
-	 */
 	
+	  @Override public String retrieveCustomerById(Long id) { Optional<String>
+	  optional = Optional.ofNullable(customerRepository.findCustomerById(id));
+	  String customer = optional.orElseThrow(CustomerNotFoundException::new);
+	  return customer; }
+	  
+	  @Override public List<String> retrieveCustomerNames() {
+	  
+	  return (List<String>) customerRepository.findAllNames(); 
+	  
+	  }
 
 }
