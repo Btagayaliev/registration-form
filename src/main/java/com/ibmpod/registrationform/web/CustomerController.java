@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ibmpod.registrationform.model.Customer;
@@ -22,6 +24,7 @@ public class CustomerController {
 		this.customerService = customerService;
 	}
 	
+	
 	@GetMapping("/customers")
 	public ResponseEntity<List<Customer>> getAllCustomers() {
 		List<Customer> customers = customerService.retrieveCustomers();
@@ -29,13 +32,20 @@ public class CustomerController {
 	}
 	
 	
-	  @GetMapping("/{id}/customer") public ResponseEntity<String>
-	  getCustomerByID(@PathVariable Long id) { String customer =
-	  customerService.retrieveCustomerById(id); return new
-	  ResponseEntity<String>(customer, HttpStatus.OK); }
-	  
-	  public ResponseEntity<List<String>> getCustomerNames() { List<String> names =
-	  customerService.retrieveCustomerNames(); return new
-	  ResponseEntity<List<String>>(names, HttpStatus.OK); }
+	@GetMapping("/{id}/customer") 
+	public ResponseEntity<String>getCustomerByID(@PathVariable Long id) { 
+		
+		String customer = customerService.retrieveCustomerById(id); 
+		return new ResponseEntity<String>(customer, HttpStatus.OK); 
+		
+	}
+	
+	
+	
+	@PostMapping("/customers")
+	 private Long saveCustomer(@RequestBody Customer customer) {
+	        customerService.saveOrUpdate(customer);
+	        return customer.getId();
+	    }
 	 
 }

@@ -1,1 +1,0 @@
-INSERT INTO customer (id, DATE_OF_BIRTH, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, PASSWORD_CONFIRM) VALUES (1, '12-12-1990', 'peter.pan@example.com', 'Peter', 'Pan', 'petrushka', 'petrushka');

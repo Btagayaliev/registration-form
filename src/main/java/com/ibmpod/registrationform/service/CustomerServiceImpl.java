@@ -1,5 +1,6 @@
 package com.ibmpod.registrationform.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,19 +19,24 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<Customer> retrieveCustomers() {
 		
-		return (List<Customer>) customerRepository.findAll();
+		//return (List<Customer>) customerRepository.findAll();
+		 List<Customer> customers = new ArrayList<Customer>();
+	        customerRepository.findAll().forEach(customer -> customers.add(customer));
+	        return customers;
 	}
 
 	
-	  @Override public String retrieveCustomerById(Long id) { Optional<String>
-	  optional = Optional.ofNullable(customerRepository.findCustomerById(id));
-	  String customer = optional.orElseThrow(CustomerNotFoundException::new);
-	  return customer; }
-	  
-	  @Override public List<String> retrieveCustomerNames() {
-	  
-	  return (List<String>) customerRepository.findAllNames(); 
-	  
+	  @Override public String retrieveCustomerById(Long id) { 
+		  
+		  	Optional<String> optional = Optional.ofNullable(customerRepository.findCustomerById(id));
+	  		String customer = optional.orElseThrow(CustomerNotFoundException::new);
+	  		return customer; 
 	  }
+	  
+	  
+	  
+	  public void saveOrUpdate(Customer customer) {
+	        customerRepository.save(customer);
+	    }
 
 }

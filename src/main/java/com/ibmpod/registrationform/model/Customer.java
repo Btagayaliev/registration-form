@@ -90,7 +90,5 @@ public class Customer {
 		this.passwordConfirm = passwordConfirm;
 	}
 	
-	
-	
 
 }

@@ -8,6 +8,6 @@ public interface CustomerService {
 	
 	List<Customer> retrieveCustomers();
     String retrieveCustomerById(Long id);
-    List<String> retrieveCustomerNames();
+    public void saveOrUpdate(Customer customer);
 
 }
