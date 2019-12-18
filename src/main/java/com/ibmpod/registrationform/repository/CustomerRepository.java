@@ -7,10 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.ibmpod.registrationform.model.Customer;
 
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
+public interface CustomerRepository {
 
-	@Query("select c.id, c.firstName from Customer c where c.id=:id")
-    String findCustomerById(Long id);
-
-
+	public Customer findByEmail(String email);
+	
+	public void save(Customer customer);
+	
 }
