@@ -1,30 +1,31 @@
 package com.ibmpod.registrationform.dto;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class CustomerDto {
 	
-	@NotNull(message = " is required")
+	@NotEmpty(message = " is required")
 	@Valid
 	private String email;
 	
-	@NotNull(message = "is required")
-	@Size(min = 6)
+	@NotEmpty(message = "is required")
+	@Size(min = 6, max = 24, message = "Password must be between 6 and 24 characters long")
 	private String password;
 	
-	@NotNull(message = "is required")
-	@Size(min = 6)
+	@NotEmpty(message = "is required")
+	@Size(min = 6, max = 24, message = "Password must be between 6 and 24 characters long")
 	private String passwordConfirm;
 	
-	@NotNull(message = "is required")
+	@NotEmpty(message = "is required")
 	private String firstName;
 	
-	@NotNull(message = "is required")
+	@NotEmpty(message = "is required")
 	private String lastName;
 	
-	@NotNull(message = " is required")
+	@NotEmpty(message = " is required")
 	private String dateOfBirth;
 	
 	public CustomerDto() {

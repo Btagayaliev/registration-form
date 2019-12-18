@@ -38,7 +38,5 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 		currentSession.saveOrUpdate(customer);
 		
 	}
-	
-	
 
 }
