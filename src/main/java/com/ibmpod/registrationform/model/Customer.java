@@ -13,39 +13,60 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="customer")
 public class Customer {
 	
 	@Id
-	@Email
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private Long id;
+	
 	@NotEmpty
 	@Column(unique=true, name="email")
 	private String email;
-	@NotEmpty
-	@Column(name="firstName")
-	private String firstName;
-	@NotEmpty
-	@Column(name="lastName")
-	private String lastName;
-	@NotEmpty
-	@Column(name="dateOfBirth")
-	private String dateOfBirth;
+	
+		
 	@NotEmpty
 	@Column(name="password")
 	@Size(min=6)
 	private String password;
-	private String passwordConfirm;
-	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinTable(name="USER_ROLES", joinColumns= {
-			@JoinColumn(name="USER_EMAIL", referencedColumnName="email")
-	}, inverseJoinColumns = {@JoinColumn(name="ROLE_NAME", referencedColumnName="name")})
+	
+	@NotEmpty
+	@Column(name="firstName")
+	private String firstName;
+	
+	@NotEmpty
+	@Column(name="lastName")
+	private String lastName;
+	
+	@NotEmpty
+	@Column(name="dateOfBirth")
+	private String dateOfBirth;
+
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "user_roles", 
+	joinColumns = @JoinColumn(name = "user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles;
 	
 	
+	
+	public Customer(@NotEmpty String email, @NotEmpty String firstName, @NotEmpty String lastName,
+			@NotEmpty String dateOfBirth, @NotEmpty @Size(min = 6) String password) {
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.password = password;
+	}
+
 	public Customer(@Email @NotEmpty String email, @NotEmpty String firstName, @NotEmpty String lastName,
 			@NotEmpty String dateOfBirth, @NotEmpty @Size(min = 6) String password, String passwordConfirm,
 			List<com.ibmpod.registrationform.model.Role> roles) {
@@ -54,7 +75,6 @@ public class Customer {
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.password = password;
-		this.passwordConfirm = passwordConfirm;
 		this.roles = roles;
 	}
 	
@@ -62,6 +82,14 @@ public class Customer {
 		
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -92,12 +120,6 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -107,8 +129,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
-				+ dateOfBirth + ", password=" + password + ", passwordConfirm=" + passwordConfirm + "]";
+		return "Customer [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", dateOfBirth=" + dateOfBirth + ", password=" + password + ", roles=" + roles + "]";
 	}
 	
 }
