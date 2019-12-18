@@ -43,9 +43,9 @@ public class CustomerController {
 	
 	
 	@PostMapping("/customers")
-	 private Long saveCustomer(@RequestBody Customer customer) {
+	 private String saveCustomer(@RequestBody Customer customer) {
 	        customerService.saveOrUpdate(customer);
-	        return customer.getId();
+	        return customer.getEmail();
 	    }
 	 
 }
