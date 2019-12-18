@@ -1,10 +1,12 @@
 package com.ibmpod.registrationform.model;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,19 +23,23 @@ public class Customer {
 	@Id
 	@Email
 	@NotEmpty
-	@Column(unique=true)
+	@Column(unique=true, name="email")
 	private String email;
 	@NotEmpty
+	@Column(name="firstName")
 	private String firstName;
 	@NotEmpty
+	@Column(name="lastName")
 	private String lastName;
 	@NotEmpty
+	@Column(name="dateOfBirth")
 	private String dateOfBirth;
 	@NotEmpty
+	@Column(name="password")
 	@Size(min=6)
 	private String password;
 	private String passwordConfirm;
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinTable(name="USER_ROLES", joinColumns= {
 			@JoinColumn(name="USER_EMAIL", referencedColumnName="email")
 	}, inverseJoinColumns = {@JoinColumn(name="ROLE_NAME", referencedColumnName="name")})
